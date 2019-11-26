@@ -1,2 +1,11 @@
-<app-search></app-search>
-<app-animal-list></app-animal-list>
+<div *ngIf="loading">Ładowanie...</div>
+
+<div *ngIf="!loading">
+    <div *ngIf="!areThereAnyAnimals()">
+        Brak wyników
+    </div>
+    <div *ngIf="areThereAnyAnimals()">
+        <app-search></app-search>
+        <app-animal-list [animals]="animals"></app-animal-list>
+    </div>
+</div>

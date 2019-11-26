@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Animal} from '../animal-details/animal';
+import {SearchService} from '../search.service';
 
 
 
@@ -14,16 +15,20 @@ export class MainComponent implements OnInit {
   private animals: Animal[];
   private loading = true;
 
-  constructor(http: HttpClient) {
-    http.get('localhost:8080/findAll').subscribe(
+  constructor(searchService: SearchService) {
+    searchService.search('').subscribe(
         response => {
-          this.animals = response['_embedded'];
+          this.animals = response;
           this.loading = false;
         }
     );
   }
 
   ngOnInit() {
+  }
+
+  areThereAnyAnimals(): boolean {
+    return this.animals && this.animals.length > 0;
   }
 
 }
