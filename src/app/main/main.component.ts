@@ -1,34 +1,42 @@
-import { Component, OnInit } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {Component, OnInit} from '@angular/core';
 import {Animal} from '../animal-details/animal';
 import {SearchService} from '../search.service';
 
 
-
 @Component({
-  selector: 'app-main',
-  templateUrl: './main.component.html',
-  styleUrls: ['./main.component.scss']
+    selector: 'app-main',
+    templateUrl: './main.component.html',
+    styleUrls: ['./main.component.scss']
 })
 export class MainComponent implements OnInit {
+    animals: Animal[];
+    loading = true;
+    error = '';
 
-  private animals: Animal[];
-  private loading = true;
+    constructor(private searchService: SearchService) {
+        this.search('');
+    }
 
-  constructor(searchService: SearchService) {
-    searchService.search('').subscribe(
-        response => {
-          this.animals = response;
-          this.loading = false;
-        }
-    );
-  }
+    private search(query: string) {
+        this.loading = true;
+        this.searchService.search(query).subscribe(
+            response => {
+                this.animals = response;
+                this.loading = false;
+                this.error = '';
+            },
+            error => {
+                this.error = error.error.message;
+                this.loading = false;
+            }
+        );
+    }
 
-  ngOnInit() {
-  }
+    ngOnInit() {
+    }
 
-  areThereAnyAnimals(): boolean {
-    return this.animals && this.animals.length > 0;
-  }
+    areThereAnyAnimals(): boolean {
+        return this.animals && this.animals.length > 0;
+    }
 
 }

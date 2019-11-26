@@ -5,7 +5,11 @@
         Brak wyników
     </div>
     <div *ngIf="areThereAnyAnimals()">
-        <app-search></app-search>
+        <app-search (search)="search($event)"></app-search>
         <app-animal-list [animals]="animals"></app-animal-list>
     </div>
+</div>
+
+<div style="position: absolute; bottom: 50px; color: red;">
+    {{error}}
 </div>
