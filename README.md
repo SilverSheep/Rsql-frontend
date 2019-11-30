@@ -1,4 +1,15 @@
-# Rsql - sample queries
+## Requirements
+
+Running backend on localhost:8080
+
+Backend is here - https://github.com/SilverSheep/Rsql-backend
+
+
+## How to run?
+
+ng serve
+
+## Rsql - sample queries
 
 `date==2019-03-12`
 
