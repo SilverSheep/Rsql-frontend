@@ -21,7 +21,7 @@ export class MainComponent implements OnInit {
         this.loading = true;
         this.searchService.search(query).subscribe(
             response => {
-                this.animals = response;
+                this.animals = response.content;
                 this.loading = false;
                 this.error = '';
             },
