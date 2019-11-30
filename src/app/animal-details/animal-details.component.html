@@ -1,6 +1,7 @@
 <mat-card>
     <mat-card-title>{{animal.name}}</mat-card-title>
     <mat-card-content>
+        <img [src]="animal.image" width="50%" height="50%"/>
         <ul>
             <li>Wiek: <strong>{{animal.age}}</strong></li>
             <li>Cena: <strong>{{animal.price}}</strong></li>

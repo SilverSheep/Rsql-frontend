@@ -4,4 +4,5 @@ export class Animal {
     kind: string;
     price: number;
     date: Date;
+    image: string;
 }
